@@ -1,4 +1,4 @@
-from src.example import run_example
+from themis_users.example import run_example
 
 
 def test_example():
