@@ -1,11 +1,13 @@
+import pytest
 from pytest import mark
 
 from _core.models import User
 from themis_users import create_user
+from themis_users.exceptions import EmptyOrNullFieldException
 
 
 @mark.asyncio
-async def test_create_user_callback_successfully(initialize_db):
+async def test_create_user_successfully():
     name = 'John'
     email = 'john.smith@example.com'
     username = 'john.smith'
@@ -27,3 +29,19 @@ async def test_create_user_callback_successfully(initialize_db):
     assert user_obj.username == username
     assert user_obj.password == password
     assert user_obj.last_name == last_name
+
+
+@mark.asyncio
+async def test_create_user_with_empty_required_fields_raises_exception():
+    with pytest.raises(EmptyOrNullFieldException) as exc_info:
+        await create_user(
+            name='',
+            email='',
+            username='',
+            password='',
+            last_name='',
+        )
+
+    expected_fields_err = ['name', 'email', 'username', 'password']
+    expected_mss_err = f'The following fields are required and cannot be empty: {expected_fields_err}'
+    assert expected_mss_err in str(exc_info.value)
