@@ -110,6 +110,16 @@ Run the test suite:
   poetry run pytest
   ```
 
+- (Optional) Run integration tests:
+  ```bash
+  poetry run pytest tests/integrations
+  ```
+
+- (Optional) Or run a specific test:
+  ```bash
+  poetry run pytest tests/<route-test>::<name-specific-test>
+  ```
+
 - Or if you are inside a virtual environment:
   ```bash
   pytest
