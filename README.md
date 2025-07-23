@@ -57,25 +57,6 @@ DB_PORT=
 
 ---
 
-## 🧮    Development Environment
-
-1. Start the PostgreSQL test database:
-   ```bash
-   docker compose -f docker-compose.test.yml up -d
-   ```
-
-2. Install pre-commit hooks:
-   ```bash
-   poetry run pre-commit install
-   ```
-
-3. (Optional) Run all pre-commit hooks:
-   ```bash
-   poetry run pre-commit run --all-files
-   ```
-
----
-
 ##  🧰 Poetry Usage
 
 - Add a package (production):
@@ -101,6 +82,25 @@ DB_PORT=
   ```bash
   poetry update
   ```
+
+---
+
+## 🧮    Development Environment
+
+1. Start the PostgreSQL test database:
+   ```bash
+   docker compose -f docker-compose.test.yml up -d
+   ```
+
+2. Install pre-commit hooks:
+   ```bash
+   poetry run pre-commit install
+   ```
+
+3. (Optional) Run all pre-commit hooks:
+   ```bash
+   poetry run pre-commit run --all-files
+   ```
 
 ---
 
@@ -137,3 +137,5 @@ Stop and remove the test DB container:
 ```bash
 docker compose -f docker-compose.test.yml down
 ```
+
+This will gracefully shut down the test database container and remove associated resources.
