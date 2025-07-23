@@ -1,10 +1,13 @@
 # themis-users
 
+<p>
+  <img src="_assets/Themis-Users-Logo-Red.png" alt="Themis Users Logo" width="150"/>
+</p>
 Microservice for user management within the Themis System application.
 
 ---
 
-## Requirements
+## ⚙️ Requirements
 
 - Python `>=3.12`
 - Poetry `>=2.1.3`
@@ -13,7 +16,7 @@ Microservice for user management within the Themis System application.
 
 ---
 
-## Project Installation
+## 📦 Project Installation
 
 1. Clone the repository:
    ```bash
@@ -31,16 +34,16 @@ Microservice for user management within the Themis System application.
    poetry shell
    ```
 
-4. Initialize the virtual environment for the project and install dependencies:
+4. Install dependencies:
    ```bash
    poetry install
    ```
 
 ---
 
-## Environment Variables
+## 🔐 Environment Variables
 
-Correctly configure the `.env` file:
+Configure the `.env` file:
 
 ```env
 ENVIRONMENT=development
@@ -54,9 +57,9 @@ DB_PORT=
 
 ---
 
-## Development Environment
+## 🧮    Development Environment
 
-1. Start the PostgreSQL test database using Docker Compose:
+1. Start the PostgreSQL test database:
    ```bash
    docker compose -f docker-compose.test.yml up -d
    ```
@@ -66,14 +69,14 @@ DB_PORT=
    poetry run pre-commit install
    ```
 
-3. (Optional) Run all pre-commit hooks manually:
+3. (Optional) Run all pre-commit hooks:
    ```bash
    poetry run pre-commit run --all-files
    ```
 
 ---
 
-## Poetry Usage
+##  🧰 Poetry Usage
 
 - Add a package (production):
 
@@ -81,19 +84,19 @@ DB_PORT=
   poetry add <package-name>
   ```
 
-- Add a development-only package:
+- Add a dev-only package:
 
   ```bash
   poetry add --group dev <package-name>
   ```
 
-- List all installed dependencies:
+- List dependencies:
 
   ```bash
   poetry show
   ```
 
-- Update dependencies:
+- Update all dependencies:
 
   ```bash
   poetry update
@@ -101,36 +104,36 @@ DB_PORT=
 
 ---
 
-## Running Tests
+## 🧪 Running Tests
 
 Run the test suite:
 
-- Run tests with Poetry:
+- With Poetry:
   ```bash
   poetry run pytest
   ```
 
-- (Optional) Run integration tests:
+- Run integration tests:
   ```bash
   poetry run pytest tests/integrations
   ```
 
-- (Optional) Or run a specific test:
+- Run a specific test:
   ```bash
   poetry run pytest tests/<route-test>::<name-specific-test>
   ```
 
-- Or if you are inside a virtual environment:
+- Inside virtual env:
   ```bash
   pytest
   ```
 
-## Shutting Down Test Database
+---
 
-To stop and remove the PostgreSQL test container when you are done:
+## 🧹 Shutting Down Test Database
+
+Stop and remove the test DB container:
 
 ```bash
 docker compose -f docker-compose.test.yml down
 ```
-
-This will gracefully shut down the test database container and remove associated resources.
