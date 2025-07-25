@@ -3,7 +3,10 @@ from pytest import mark
 
 from _core.models import User
 from themis_users import create_user
-from themis_users.exceptions import EmptyOrNullFieldException
+from themis_users.exceptions import (
+    DuplicateFieldException,
+    EmptyOrNullFieldException,
+)
 
 
 @mark.asyncio
@@ -44,4 +47,19 @@ async def test_create_user_with_empty_required_fields_raises_exception():
 
     expected_fields_err = ['name', 'email', 'username', 'password']
     expected_mss_err = f'The following fields are required and cannot be empty: {expected_fields_err}'
+    assert expected_mss_err in str(exc_info.value)
+
+
+@mark.asyncio
+async def test_create_user_when_unique_fields_exist_in_user_model_raises_exception(default_user_constructor):
+    with pytest.raises(DuplicateFieldException) as exc_info:
+        await create_user(
+            name=default_user_constructor.name,
+            email=default_user_constructor.email,
+            username=default_user_constructor.username,
+            password=default_user_constructor.password,
+            last_name=default_user_constructor.last_name,
+        )
+
+    expected_mss_err = 'A record with the provided value already exists for the field "username".'
     assert expected_mss_err in str(exc_info.value)

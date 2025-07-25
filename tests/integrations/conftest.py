@@ -11,6 +11,7 @@ from _configs import (
     TEST_DB_URL,
     TEST_DB_USER,
 )
+from tests.integrations.factory_test import UserFactory
 
 
 @fixture(scope='function', autouse=True)
@@ -32,3 +33,10 @@ async def initialize_db():
     conn = await asyncpg.connect(admin_url)
     await conn.execute(f'DROP DATABASE IF EXISTS "{db_name}"')
     await conn.close()
+
+
+@fixture
+async def default_user_constructor():
+    user_obj = await UserFactory.build()
+    await user_obj.save()
+    return user_obj

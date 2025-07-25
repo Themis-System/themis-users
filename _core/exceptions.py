@@ -4,3 +4,7 @@ class ExceptionBase(Exception):
 
 class EmptyOrNullFieldException(ExceptionBase):
     pass
+
+
+class DuplicateFieldException(ExceptionBase):
+    pass
